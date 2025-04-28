@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
-import { Providers } from './providers';
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
-// Import Script from next/script is handled in a client component
+import ClientWrapper from '@/components/layout/ClientWrapper';
+import React from 'react';
 
 // Font configuration
 const inter = Inter({
@@ -27,24 +25,15 @@ export const metadata: Metadata = {
   keywords: 'IT services, software development, cloud solutions, cybersecurity, digital transformation',
 };
 
-// Script component is already imported at the top
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <head>
-        {/* Script tag moved to a client component to handle event handlers properly */}
-      </head>
+    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body>
-        <Providers>
-          <Navbar />
-          {children}
-          <Footer />
-        </Providers>
+        <ClientWrapper children={children}></ClientWrapper>
       </body>
     </html>
   );

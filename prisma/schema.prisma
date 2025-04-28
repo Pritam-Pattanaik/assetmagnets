@@ -111,12 +111,12 @@ model Service {
   slug        String    @unique
   description String
   icon        String?
-  color       String?
-  details     String[]  @default([])
-  active      Boolean   @default(true)
   featured    Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  active      Boolean   @default(true)
+  color       String?
+  details     String[]  @default([])
   projects    Project[]
 }
 
