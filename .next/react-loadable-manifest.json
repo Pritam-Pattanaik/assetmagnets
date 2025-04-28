@@ -1,8 +1,9 @@
 {
   "app\\contact\\page.tsx -> framer-motion": {
-    "id": "app\\contact\\page.tsx -> framer-motion",
+    "id": 6890,
     "files": [
-      "static/chunks/_app-pages-browser_node_modules_framer-motion_dist_es_index_mjs.js"
+      "static/chunks/809-424c4c9da36821e7.js",
+      "static/chunks/890.3254579eff62301d.js"
     ]
   }
 }
