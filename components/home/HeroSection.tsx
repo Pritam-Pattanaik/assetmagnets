@@ -30,9 +30,9 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <section className="relative min-h-[100vh] flex items-center pt-20 pb-16 bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 w-full h-full">
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-primary-100 opacity-50 blur-3xl"></div>
         <div className="absolute top-1/2 -left-24 w-80 h-80 rounded-full bg-secondary-100 opacity-50 blur-3xl"></div>
         <div className="absolute bottom-0 right-1/3 w-64 h-64 rounded-full bg-primary-200 opacity-40 blur-3xl"></div>
@@ -114,7 +114,7 @@ export const HeroSection = () => {
               </div>
 
               {/* Floating Elements */}
-              <div className="absolute -top-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
+              <div className="absolute -top-6 -right-6 bg-white p-4 rounded-lg shadow-lg z-10">
                 <motion.div
                   animate={{ y: [0, -10, 0] }}
                   transition={{ repeat: Infinity, duration: 3 }}
@@ -126,7 +126,7 @@ export const HeroSection = () => {
                 </motion.div>
               </div>
 
-              <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg">
+              <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg z-10">
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
                   transition={{ repeat: Infinity, duration: 4 }}
