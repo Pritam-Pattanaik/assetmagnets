@@ -1,7 +1,7 @@
 {
     "version": 2,
-    "buildCommand": "npm install --legacy-peer-deps && npm run build",
-    "installCommand": "npm install --legacy-peer-deps",
+    "buildCommand": "npm install --production=false --legacy-peer-deps && npm run build",
+    "installCommand": "npm install --production=false --legacy-peer-deps",
     "env": {
         "NODE_OPTIONS": "--max-old-space-size=4096"
     }
