@@ -84,53 +84,50 @@ export const ServicesHighlight = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
-      >
-        {services.map((service) => (
-          <div
-            key={service.id}
-            className="card p-6 group"
-          >
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
-            >
-              <div className="mb-4 transform transition-transform duration-300 group-hover:scale-110">
-                {service.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
-                {service.title}
-              </h3>
-              <p className="text-gray-600 mb-4">{service.description}</p>
-              <Link
-                href={service.link}
-                className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300"
+    <section className="py-16 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service) => (
+            <div key={service.id} className="card p-6 group">
+              <motion.div
+                variants={itemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
-                Learn More
-                <svg
-                  className="ml-2 w-4 h-4 transform transition-transform duration-300 group-hover:translate-x-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div className="mb-4 transform transition-transform duration-300 group-hover:scale-110">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 mb-4">{service.description}</p>
+                <Link
+                  href={service.link}
+                  className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  ></path>
-                </svg>
-              </Link>
-            </motion.div>
-          </div>
-        ))}
-      </motion.div>
-    </div>
+                  Learn More
+                  <svg
+                    className="ml-2 w-4 h-4 transform transition-transform duration-300 group-hover:translate-x-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    ></path>
+                  </svg>
+                </Link>
+              </motion.div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
