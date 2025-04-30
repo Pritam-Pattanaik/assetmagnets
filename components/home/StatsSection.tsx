@@ -87,27 +87,31 @@ export const StatsSection = () => {
   return (
     <section className="py-16 bg-gray-900 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-        >
-          {stats.map((stat) => (
-            <motion.div
-              key={stat.id}
-              variants={itemVariants}
-              className="flex flex-col items-center text-center p-6 rounded-lg bg-gray-800 hover:bg-gray-750 transition-colors duration-300"
-            >
-              <div className={`p-4 rounded-full bg-gradient-to-r ${stat.color} mb-4`}>
-                {stat.icon}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div
+            ref={ref}
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+          >
+            {stats.map((stat) => (
+              <div
+                key={stat.id}
+                className="flex flex-col items-center text-center p-6 rounded-lg bg-gray-800 hover:bg-gray-750 transition-colors duration-300"
+              >
+                <motion.div
+                  variants={itemVariants}
+                >
+                  <div className={`p-4 rounded-full bg-gradient-to-r ${stat.color} mb-4`}>
+                    {stat.icon}
+                  </div>
+                  <Counter value={stat.value} suffix={stat.suffix} />
+                  <h3 className="text-xl font-medium mt-2 text-gray-300">{stat.title}</h3>
+                </motion.div>
               </div>
-              <Counter value={stat.value} suffix={stat.suffix} />
-              <h3 className="text-xl font-medium mt-2 text-gray-300">{stat.title}</h3>
-            </motion.div>
-          ))}
-        </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

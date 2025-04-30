@@ -151,24 +151,25 @@ export default function JobApplicationsPage({ params }: { params: { jobId: strin
 
     return (
         <div className="space-y-6">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="flex flex-col sm:flex-row sm:items-center sm:justify-between"
-            >
-                <div>
-                    <Link href="/admin/pages/career/jobs" className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-2">
-                        <FaArrowLeft className="mr-2" /> Back to Job Listings
-                    </Link>
-                    <h1 className="text-2xl font-bold text-gray-900">
-                        Applications for {jobDetails?.title || 'Job Position'}
-                    </h1>
-                    <p className="text-gray-600">
-                        Manage and review applications for this position.
-                    </p>
-                </div>
-            </motion.div>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <div>
+                        <Link href="/admin/pages/career/jobs" className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-2">
+                            <FaArrowLeft className="mr-2" /> Back to Job Listings
+                        </Link>
+                        <h1 className="text-2xl font-bold text-gray-900">
+                            Applications for {jobDetails?.title || 'Job Position'}
+                        </h1>
+                        <p className="text-gray-600">
+                            Manage and review applications for this position.
+                        </p>
+                    </div>
+                </motion.div>
+            </div>
 
             {/* Filters */}
             <div className="bg-white shadow-md rounded-lg p-6">

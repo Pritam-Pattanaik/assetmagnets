@@ -6,8 +6,8 @@ import React from 'react';
 
 export default function ClientWrapper({ children }: { children: React.ReactNode }) {
     return (
-        <Providers children={children}>
-            <ClientLayout children={children}>
+        <Providers>
+            <ClientLayout>
                 {children}
             </ClientLayout>
         </Providers>

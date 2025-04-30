@@ -73,61 +73,65 @@ export const EnhancedServicesHighlight = () => {
 
     return (
         <div ref={ref} className="py-8">
-            <motion.div
-                variants={animations.staggeredCards}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-                {services.map((service) => (
-                    <motion.div
-                        key={service.id}
-                        variants={animations.slideUp}
-                        whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                        className="card p-6 group border border-gray-100 hover:border-transparent hover:shadow-xl transition-all duration-300"
-                    >
-                        <div className="mb-6 transform transition-transform duration-300 group-hover:scale-110">
-                            <div className={`inline-flex p-4 rounded-full bg-gradient-to-r ${service.color} text-white`}>
-                                {service.icon}
-                            </div>
-                        </div>
-
-                        <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
-                            {service.title}
-                        </h3>
-
-                        <p className="text-gray-600 mb-6 group-hover:text-gray-700 transition-colors duration-300">
-                            {service.description}
-                        </p>
-
-                        <motion.div
-                            whileHover={{ x: 5 }}
-                            transition={{ type: 'spring', stiffness: 400 }}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <motion.div
+                    variants={animations.staggeredCards}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                >
+                    {services.map((service) => (
+                        <div
+                            key={service.id}
+                            className="card p-6 group border border-gray-100 hover:border-transparent hover:shadow-xl transition-all duration-300"
                         >
-                            <Link
-                                href={service.link}
-                                className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300"
+                            <motion.div
+                                variants={animations.slideUp}
+                                whileHover={{ y: -10, transition: { duration: 0.3 } }}
                             >
-                                Learn More
-                                <svg
-                                    className="ml-2 w-4 h-4 transform transition-transform duration-300 group-hover:translate-x-2"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                <div className="mb-6 transform transition-transform duration-300 group-hover:scale-110">
+                                    <div className={`inline-flex p-4 rounded-full bg-gradient-to-r ${service.color} text-white`}>
+                                        {service.icon}
+                                    </div>
+                                </div>
+
+                                <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
+                                    {service.title}
+                                </h3>
+
+                                <p className="text-gray-600 mb-6 group-hover:text-gray-700 transition-colors duration-300">
+                                    {service.description}
+                                </p>
+
+                                <motion.div
+                                    whileHover={{ x: 5 }}
+                                    transition={{ type: 'spring', stiffness: 400 }}
                                 >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                                    ></path>
-                                </svg>
-                            </Link>
-                        </motion.div>
-                    </motion.div>
-                ))}
-            </motion.div>
+                                    <Link
+                                        href={service.link}
+                                        className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300"
+                                    >
+                                        Learn More
+                                        <svg
+                                            className="ml-2 w-4 h-4 transform transition-transform duration-300 group-hover:translate-x-2"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M14 5l7 7m0 0l-7 7m7-7H3"
+                                            ></path>
+                                        </svg>
+                                    </Link>
+                                </motion.div>
+                            </motion.div>
+                        </div>
+                    ))}
+                </motion.div>
+            </div>
         </div>
     );
 };

@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FaLightbulb, FaHandshake, FaRocket, FaUserShield, FaChartLine, FaUsers } from 'react-icons/fa';
 
@@ -11,7 +12,7 @@ type CoreValue = {
   color: string;
 };
 
-export const CoreValues = (): JSX.Element => {
+export const CoreValues = (): React.ReactElement => {
   // Core values data
   const values: CoreValue[] = [
     {
@@ -38,7 +39,7 @@ export const CoreValues = (): JSX.Element => {
     {
       id: 'security',
       title: 'Security',
-      description: 'We prioritize the security and privacy of our clients\' data and systems.',
+      description: 'We prioritize the security and privacy of our clients\'s data and systems.',
       icon: <FaUserShield className="text-4xl" />,
       color: 'bg-red-500',
     },
@@ -70,10 +71,10 @@ export const CoreValues = (): JSX.Element => {
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
-      y: 0,
       opacity: 1,
+      y: 0,
       transition: {
         duration: 0.5,
       },
@@ -100,32 +101,47 @@ export const CoreValues = (): JSX.Element => {
   };
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-    >
-      {values.map((value) => (
-        <motion.div
-          key={value.id}
-          variants={itemVariants}
-          whileHover="hover"
-          className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border-t-4 border-primary-500"
-        >
-          <div className="flex items-center mb-4">
-            <motion.div
-              variants={iconVariants}
-              className={`p-3 rounded-full ${value.color} text-white mr-4`}
-            >
-              {value.icon}
-            </motion.div>
-            <h3 className="text-xl font-bold text-gray-900">{value.title}</h3>
-          </div>
-          <p className="text-gray-600">{value.description}</p>
-        </motion.div>
-      ))}
-    </motion.div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+      >
+        {values.map((value) => (
+          <motion.div
+            key={value.id}
+            variants={itemVariants}
+            whileHover="hover"
+            style={{
+              padding: '1.5rem',
+              backgroundColor: 'white',
+              borderRadius: '0.5rem',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+              borderTop: '4px solid #3B82F6',
+              marginBottom: '2rem',
+              transition: 'box-shadow 0.3s ease'
+            }}
+          >
+            <div className="flex items-center mb-4">
+              <motion.div
+                variants={iconVariants}
+                style={{
+                  padding: '0.75rem',
+                  borderRadius: '9999px',
+                  backgroundColor: value.color.replace('bg-', ''),
+                  color: 'white',
+                  marginRight: '1rem'
+                }}
+              >
+                {value.icon}
+              </motion.div>
+              <h3 className="text-xl font-bold text-gray-900">{value.title}</h3>
+            </div>
+            <p className="text-gray-600">{value.description}</p>
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
   );
 };

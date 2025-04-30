@@ -34,52 +34,52 @@ export const CtaSection = () => {
         <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-white opacity-5 -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-white opacity-5 translate-x-1/3 translate-y-1/3"></div>
       </div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div 
-          className="max-w-4xl mx-auto text-center"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <motion.div variants={itemVariants} className="inline-block p-3 bg-white/10 rounded-full mb-6">
-            <FaRocket className="text-3xl text-white" />
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <div className="inline-block p-3 bg-white/10 rounded-full mb-6">
+              <motion.div variants={itemVariants}>
+                <FaRocket className="text-3xl text-white" />
+              </motion.div>
+            </div>
+
+            <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-heading">
+              <motion.h2 variants={itemVariants}>
+                Ready to Transform Your Business with Technology?
+              </motion.h2>
+            </div>
+
+            <div className="text-lg md:text-xl text-white/90 mb-10 max-w-3xl mx-auto">
+              <motion.p variants={itemVariants}>
+                Partner with us to leverage cutting-edge IT solutions that drive growth, enhance efficiency, and secure your digital assets.
+              </motion.p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.div variants={itemVariants}>
+                <Link
+                  href="/contact"
+                  className="btn-white text-primary-600 hover:bg-gray-100 transition-colors duration-300 text-center"
+                >
+                  Schedule a Consultation
+                </Link>
+
+                <Link
+                  href="/services"
+                  className="btn-outline-white hover:bg-white/10 transition-colors duration-300 text-center"
+                >
+                  Explore Our Services
+                </Link>
+              </motion.div>
+            </div>
           </motion.div>
-          
-          <motion.h2 
-            variants={itemVariants}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-heading"
-          >
-            Ready to Transform Your Business with Technology?
-          </motion.h2>
-          
-          <motion.p 
-            variants={itemVariants}
-            className="text-lg md:text-xl text-white/90 mb-10 max-w-3xl mx-auto"
-          >
-            Partner with us to leverage cutting-edge IT solutions that drive growth, enhance efficiency, and secure your digital assets.
-          </motion.p>
-          
-          <motion.div 
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Link 
-              href="/contact" 
-              className="btn-white text-primary-600 hover:bg-gray-100 transition-colors duration-300 text-center"
-            >
-              Schedule a Consultation
-            </Link>
-            
-            <Link 
-              href="/services" 
-              className="btn-outline-white hover:bg-white/10 transition-colors duration-300 text-center"
-            >
-              Explore Our Services
-            </Link>
-          </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

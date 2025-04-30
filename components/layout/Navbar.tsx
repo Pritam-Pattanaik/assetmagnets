@@ -50,17 +50,18 @@ export const Navbar = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="relative h-10"
-            >
-              {/* Replace with your actual logo */}
-              <div className="font-bold text-xl md:text-2xl text-primary-600 tracking-tight whitespace-nowrap">
-                ASSET-MAGNETS
-              </div>
-            </motion.div>
+            <div className="relative h-10">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                {/* Replace with your actual logo */}
+                <div className="font-bold text-xl md:text-2xl text-primary-600 tracking-tight whitespace-nowrap">
+                  ASSET-MAGNETS
+                </div>
+              </motion.div>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -83,19 +84,20 @@ export const Navbar = () => {
           </nav>
 
           {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="hidden md:flex items-center space-x-4"
-          >
-            <Link href="/admin/login" className="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300">
-              Admin Login
-            </Link>
-            <Link href="/contact" className="btn-primary">
-              Get Started
-            </Link>
-          </motion.div>
+          <div className="hidden md:flex items-center space-x-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Link href="/admin/login" className="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300">
+                Admin Login
+              </Link>
+              <Link href="/contact" className="btn-primary">
+                Get Started
+              </Link>
+            </motion.div>
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -111,44 +113,45 @@ export const Navbar = () => {
       </div>
 
       {/* Mobile Navigation */}
-      <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{
-          opacity: isOpen ? 1 : 0,
-          height: isOpen ? 'auto' : 0,
-        }}
-        transition={{ duration: 0.3 }}
-        className="md:hidden overflow-hidden bg-white"
-      >
-        <div className="container mx-auto px-4 py-4">
-          <nav className="flex flex-col space-y-4">
-            {navLinks.map((link) => (
+      <div className="md:hidden overflow-hidden bg-white">
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{
+            opacity: isOpen ? 1 : 0,
+            height: isOpen ? 'auto' : 0,
+          }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="container mx-auto px-4 py-4">
+            <nav className="flex flex-col space-y-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`font-medium py-2 transition-colors duration-300 ${pathname === link.href ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'}`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
               <Link
-                key={link.name}
-                href={link.href}
-                className={`font-medium py-2 transition-colors duration-300 ${pathname === link.href ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'}`}
+                href="/admin/login"
+                className="text-gray-700 hover:text-primary-600 font-medium py-2 transition-colors duration-300"
                 onClick={() => setIsOpen(false)}
               >
-                {link.name}
+                Admin Login
               </Link>
-            ))}
-            <Link
-              href="/admin/login"
-              className="text-gray-700 hover:text-primary-600 font-medium py-2 transition-colors duration-300"
-              onClick={() => setIsOpen(false)}
-            >
-              Admin Login
-            </Link>
-            <Link
-              href="/contact"
-              className="btn-primary text-center mt-4"
-              onClick={() => setIsOpen(false)}
-            >
-              Get Started
-            </Link>
-          </nav>
-        </div>
-      </motion.div>
+              <Link
+                href="/contact"
+                className="btn-primary text-center mt-4"
+                onClick={() => setIsOpen(false)}
+              >
+                Get Started
+              </Link>
+            </nav>
+          </div>
+        </motion.div>
+      </div>
     </header>
   );
 };

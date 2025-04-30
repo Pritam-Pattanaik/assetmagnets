@@ -118,69 +118,81 @@ export const TeamProfiles = () => {
   };
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-    >
-      {teamMembers.map((member) => (
-        <motion.div
-          key={member.id}
-          variants={itemVariants}
-          className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 group"
-          onMouseEnter={() => setActiveId(member.id)}
-          onMouseLeave={() => setActiveId(null)}
-        >
-          {/* Team Member Image */}
-          <div className="relative h-64 bg-gray-200 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-secondary-400 flex items-center justify-center text-white text-6xl font-bold">
-              {member.name.charAt(0)}
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+      >
+        {teamMembers.map((member) => (
+          <div
+            key={member.id}
+            className="group"
+            onMouseEnter={() => setActiveId(member.id)}
+            onMouseLeave={() => setActiveId(null)}
+          >
             <motion.div
-              initial={{ scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-              className="w-full h-full relative"
+              variants={itemVariants}
+              style={{
+                backgroundColor: 'white',
+                borderRadius: '0.5rem',
+                overflow: 'hidden',
+                boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+                transition: 'box-shadow 0.3s ease'
+              }}
             >
-              {/* Actual image would go here */}
-            </motion.div>
-            
-            {/* Social Icons Overlay */}
-            <motion.div 
-              className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center space-x-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 1 }}
-            >
-              {member.social.linkedin && (
-                <a href={member.social.linkedin} className="text-white hover:text-primary-400 transition-colors duration-300">
-                  <FaLinkedin size={24} />
-                </a>
-              )}
-              {member.social.twitter && (
-                <a href={member.social.twitter} className="text-white hover:text-primary-400 transition-colors duration-300">
-                  <FaTwitter size={24} />
-                </a>
-              )}
-              {member.social.email && (
-                <a href={`mailto:${member.social.email}`} className="text-white hover:text-primary-400 transition-colors duration-300">
-                  <FaEnvelope size={24} />
-                </a>
-              )}
+              {/* Team Member Image */}
+              <div className="relative h-64 bg-gray-200 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-secondary-400 flex items-center justify-center text-white text-6xl font-bold">
+                  {member.name.charAt(0)}
+                </div>
+                <motion.div
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ width: '100%', height: '100%', position: 'relative' }}
+                >
+                  {/* Actual image would go here */}
+                </motion.div>
+
+                {/* Social Icons Overlay */}
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center space-x-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                  >
+                    {member.social.linkedin && (
+                      <a href={member.social.linkedin} className="text-white hover:text-primary-400 transition-colors duration-300">
+                        <FaLinkedin size={24} />
+                      </a>
+                    )}
+                    {member.social.twitter && (
+                      <a href={member.social.twitter} className="text-white hover:text-primary-400 transition-colors duration-300">
+                        <FaTwitter size={24} />
+                      </a>
+                    )}
+                    {member.social.email && (
+                      <a href={`mailto:${member.social.email}`} className="text-white hover:text-primary-400 transition-colors duration-300">
+                        <FaEnvelope size={24} />
+                      </a>
+                    )}
+                  </motion.div>
+                </div>
+              </div>
+
+              {/* Team Member Info */}
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors duration-300">
+                  {member.name}
+                </h3>
+                <p className="text-primary-600 font-medium mb-3">{member.position}</p>
+                <p className="text-gray-600 text-sm">{member.bio}</p>
+              </div>
             </motion.div>
           </div>
-          
-          {/* Team Member Info */}
-          <div className="p-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors duration-300">
-              {member.name}
-            </h3>
-            <p className="text-primary-600 font-medium mb-3">{member.position}</p>
-            <p className="text-gray-600 text-sm">{member.bio}</p>
-          </div>
-        </motion.div>
-      ))}
-    </motion.div>
+        ))}
+      </motion.div>
+    </div>
   );
 };

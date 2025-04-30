@@ -113,18 +113,20 @@ export default function ContactPage() {
             {/* Hero Section */}
             <section className="pt-32 pb-16 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
                 <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
-                    <MotionDiv
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.3 }}
-                        transition={{ duration: 1.2 }}
-                        className="absolute -top-24 -right-48 w-72 h-72 rounded-full bg-primary-100 blur-3xl"
-                    ></MotionDiv>
-                    <MotionDiv
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.25 }}
-                        transition={{ duration: 1.2, delay: 0.3 }}
-                        className="absolute -bottom-10 left-20 w-56 h-56 rounded-full bg-primary-200 blur-3xl"
-                    ></MotionDiv>
+                    <div className="absolute -top-24 -right-48 w-72 h-72 rounded-full bg-primary-100 blur-3xl">
+                        <MotionDiv
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.3 }}
+                            transition={{ duration: 1.2 }}
+                        ></MotionDiv>
+                    </div>
+                    <div className="absolute -bottom-10 left-20 w-56 h-56 rounded-full bg-primary-200 blur-3xl">
+                        <MotionDiv
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.25 }}
+                            transition={{ duration: 1.2, delay: 0.3 }}
+                        ></MotionDiv>
+                    </div>
                 </div>
 
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -150,7 +152,15 @@ export default function ContactPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 viewport={{ once: true }}
-                                className="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-all duration-300"
+                                style={{
+                                    padding: '1.5rem',
+                                    backgroundColor: 'rgb(249 250 251)',
+                                    borderRadius: '0.75rem',
+                                    transition: 'all 300ms',
+                                }}
+                                whileHover={{
+                                    boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)'
+                                }}
                             >
                                 <div className="flex items-center mb-4">
                                     {info.icon}

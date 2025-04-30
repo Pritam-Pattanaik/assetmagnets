@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaPlus, FaEdit, FaTrash, FaArrowUp, FaArrowDown, FaCode, FaCloud, FaShieldAlt, FaChartLine, FaLaptopCode, FaMobileAlt } from 'react-icons/fa';
 import { useAdminProtected } from '@/utils/client-auth';
@@ -17,7 +17,7 @@ interface ServiceCard {
 }
 
 // Map of icon names to their components
-const iconMap: Record<string, JSX.Element> = {
+const iconMap: Record<string, React.ReactNode> = {
     'FaCode': <FaCode className="text-4xl text-white" />,
     'FaCloud': <FaCloud className="text-4xl text-white" />,
     'FaShieldAlt': <FaShieldAlt className="text-4xl text-white" />,

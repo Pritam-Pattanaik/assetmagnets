@@ -258,112 +258,113 @@ export default function ContactInfoEditor() {
 
                 {/* Branch Edit Form */}
                 {showBranchForm && editingBranch && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="border border-gray-300 rounded-md p-4 mb-6 bg-gray-50"
-                    >
-                        <h3 className="text-md font-medium text-gray-900 mb-4">
-                            {branches.some(b => b.id === editingBranch.id) ? 'Edit Branch' : 'Add New Branch'}
-                        </h3>
+                    <div className="border border-gray-300 rounded-md p-4 mb-6 bg-gray-50">
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                        >
+                            <h3 className="text-md font-medium text-gray-900 mb-4">
+                                {branches.some(b => b.id === editingBranch.id) ? 'Edit Branch' : 'Add New Branch'}
+                            </h3>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <label htmlFor="branchName" className="block text-sm font-medium text-gray-700">Branch Name*</label>
-                                <input
-                                    type="text"
-                                    id="branchName"
-                                    value={editingBranch.name}
-                                    onChange={(e) => updateBranchField('name', e.target.value)}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label htmlFor="branchName" className="block text-sm font-medium text-gray-700">Branch Name*</label>
+                                    <input
+                                        type="text"
+                                        id="branchName"
+                                        value={editingBranch.name}
+                                        onChange={(e) => updateBranchField('name', e.target.value)}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                                        placeholder="Headquarters, Regional Office, etc."
+                                        required
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="branchCountry" className="block text-sm font-medium text-gray-700">Country*</label>
+                                    <input
+                                        type="text"
+                                        id="branchCountry"
+                                        value={editingBranch.country}
+                                        onChange={(e) => updateBranchField('country', e.target.value)}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                                        placeholder="United States, United Kingdom, etc."
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="mb-4">
+                                <label htmlFor="branchAddress" className="block text-sm font-medium text-gray-700">Address*</label>
+                                <textarea
+                                    id="branchAddress"
+                                    rows={2}
+                                    value={editingBranch.address}
+                                    onChange={(e) => updateBranchField('address', e.target.value)}
                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                                    placeholder="Headquarters, Regional Office, etc."
+                                    placeholder="Full street address"
                                     required
                                 />
                             </div>
 
-                            <div>
-                                <label htmlFor="branchCountry" className="block text-sm font-medium text-gray-700">Country*</label>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label htmlFor="branchPhone" className="block text-sm font-medium text-gray-700">Phone Number</label>
+                                    <input
+                                        type="text"
+                                        id="branchPhone"
+                                        value={editingBranch.phone}
+                                        onChange={(e) => updateBranchField('phone', e.target.value)}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                                        placeholder="+1 (555) 123-4567"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="branchEmail" className="block text-sm font-medium text-gray-700">Email Address</label>
+                                    <input
+                                        type="email"
+                                        id="branchEmail"
+                                        value={editingBranch.email}
+                                        onChange={(e) => updateBranchField('email', e.target.value)}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                                        placeholder="branch@example.com"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="mb-4">
+                                <label htmlFor="branchHours" className="block text-sm font-medium text-gray-700">Office Hours</label>
                                 <input
                                     type="text"
-                                    id="branchCountry"
-                                    value={editingBranch.country}
-                                    onChange={(e) => updateBranchField('country', e.target.value)}
+                                    id="branchHours"
+                                    value={editingBranch.officeHours}
+                                    onChange={(e) => updateBranchField('officeHours', e.target.value)}
                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                                    placeholder="United States, United Kingdom, etc."
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div className="mb-4">
-                            <label htmlFor="branchAddress" className="block text-sm font-medium text-gray-700">Address*</label>
-                            <textarea
-                                id="branchAddress"
-                                rows={2}
-                                value={editingBranch.address}
-                                onChange={(e) => updateBranchField('address', e.target.value)}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                                placeholder="Full street address"
-                                required
-                            />
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <label htmlFor="branchPhone" className="block text-sm font-medium text-gray-700">Phone Number</label>
-                                <input
-                                    type="text"
-                                    id="branchPhone"
-                                    value={editingBranch.phone}
-                                    onChange={(e) => updateBranchField('phone', e.target.value)}
-                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                                    placeholder="+1 (555) 123-4567"
+                                    placeholder="Monday - Friday: 9:00 AM - 5:00 PM"
                                 />
                             </div>
 
-                            <div>
-                                <label htmlFor="branchEmail" className="block text-sm font-medium text-gray-700">Email Address</label>
-                                <input
-                                    type="email"
-                                    id="branchEmail"
-                                    value={editingBranch.email}
-                                    onChange={(e) => updateBranchField('email', e.target.value)}
-                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                                    placeholder="branch@example.com"
-                                />
+                            <div className="flex justify-end space-x-3">
+                                <button
+                                    type="button"
+                                    onClick={cancelBranchEdit}
+                                    className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={saveBranchChanges}
+                                    className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                                >
+                                    Save Branch
+                                </button>
                             </div>
-                        </div>
-
-                        <div className="mb-4">
-                            <label htmlFor="branchHours" className="block text-sm font-medium text-gray-700">Office Hours</label>
-                            <input
-                                type="text"
-                                id="branchHours"
-                                value={editingBranch.officeHours}
-                                onChange={(e) => updateBranchField('officeHours', e.target.value)}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                                placeholder="Monday - Friday: 9:00 AM - 5:00 PM"
-                            />
-                        </div>
-
-                        <div className="flex justify-end space-x-3">
-                            <button
-                                type="button"
-                                onClick={cancelBranchEdit}
-                                className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                type="button"
-                                onClick={saveBranchChanges}
-                                className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                            >
-                                Save Branch
-                            </button>
-                        </div>
-                    </motion.div>
+                        </motion.div>
+                    </div>
                 )}
 
                 {/* Social Media Section */}

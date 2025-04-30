@@ -103,47 +103,48 @@ export const TestimonialsCarousel = () => {
   };
 
   return (
-    <div 
-      className="relative max-w-4xl mx-auto py-8" 
+    <div
+      className="relative max-w-4xl mx-auto py-8"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {/* Testimonial Carousel */}
       <div className="relative overflow-hidden rounded-xl bg-white shadow-lg border border-gray-100">
         <AnimatePresence initial={false} custom={direction}>
-          <motion.div
-            key={currentIndex}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className="p-8 md:p-12"
-          >
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              {/* Testimonial Image */}
-              <div className="w-24 h-24 md:w-32 md:h-32 relative rounded-full overflow-hidden border-4 border-primary-100 flex-shrink-0 mx-auto md:mx-0 shadow-md">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-secondary-400 flex items-center justify-center text-white text-4xl">
-                  {testimonials[currentIndex].name.charAt(0)}
+          <div className="p-8 md:p-12">
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+            >
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                {/* Testimonial Image */}
+                <div className="w-24 h-24 md:w-32 md:h-32 relative rounded-full overflow-hidden border-4 border-primary-100 flex-shrink-0 mx-auto md:mx-0 shadow-md">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-secondary-400 flex items-center justify-center text-white text-4xl">
+                    {testimonials[currentIndex].name.charAt(0)}
+                  </div>
+                </div>
+
+                {/* Testimonial Content */}
+                <div className="flex-1">
+                  <FaQuoteLeft className="text-primary-200 text-4xl mb-4" />
+                  <p className="text-gray-700 italic mb-6 text-lg">
+                    {testimonials[currentIndex].content}
+                  </p>
+                  <div className="flex flex-col">
+                    <span className="font-bold text-gray-900">{testimonials[currentIndex].name}</span>
+                    <span className="text-primary-600">
+                      {testimonials[currentIndex].position}, {testimonials[currentIndex].company}
+                    </span>
+                  </div>
                 </div>
               </div>
-              
-              {/* Testimonial Content */}
-              <div className="flex-1">
-                <FaQuoteLeft className="text-primary-200 text-4xl mb-4" />
-                <p className="text-gray-700 italic mb-6 text-lg">
-                  {testimonials[currentIndex].content}
-                </p>
-                <div className="flex flex-col">
-                  <span className="font-bold text-gray-900">{testimonials[currentIndex].name}</span>
-                  <span className="text-primary-600">
-                    {testimonials[currentIndex].position}, {testimonials[currentIndex].company}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </AnimatePresence>
       </div>
 
@@ -156,7 +157,7 @@ export const TestimonialsCarousel = () => {
         >
           <FaChevronLeft className="text-primary-600" />
         </button>
-        
+
         {/* Indicators */}
         <div className="flex items-center space-x-2">
           {testimonials.map((_, index) => (
@@ -171,7 +172,7 @@ export const TestimonialsCarousel = () => {
             />
           ))}
         </div>
-        
+
         <button
           onClick={nextSlide}
           className="p-2 rounded-full bg-white shadow-md hover:bg-primary-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500"
