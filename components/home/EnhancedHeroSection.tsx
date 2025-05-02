@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
@@ -11,219 +12,126 @@ export const EnhancedHeroSection = () => {
     const isInView = useInView(ref, { once: true, amount: 0.3 });
 
     return (
-        <section ref={ref} className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
-            {/* Animated Background Elements */}
-            <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-primary-100 opacity-30 blur-3xl">
-                    <motion.div
-                        variants={animations.float}
-                        initial="initial"
-                        animate="animate"
-                        custom={{ amplitude: 15, duration: 6, delay: 0 }}
-                        style={{ width: '100%', height: '100%' }}
-                    ></motion.div>
-                </div>
-                <div className="absolute top-2/3 -left-24 w-72 h-72 rounded-full bg-secondary-100 opacity-25 blur-3xl">
-                    <motion.div
-                        variants={animations.float}
-                        initial="initial"
-                        animate="animate"
-                        custom={{ amplitude: 10, duration: 7, delay: 1.5 }}
-                        style={{ width: '100%', height: '100%' }}
-                    ></motion.div>
-                </div>
-                <div className="absolute -bottom-20 right-1/4 w-64 h-64 rounded-full bg-primary-200 opacity-20 blur-3xl">
-                    <motion.div
-                        variants={animations.float}
-                        initial="initial"
-                        animate="animate"
-                        custom={{ amplitude: 8, duration: 8, delay: 0.8 }}
-                        style={{ width: '100%', height: '100%' }}
-                    ></motion.div>
-                </div>
-            </div>
-
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <section className="min-h-[80vh] h-auto flex items-center justify-center py-10 md:py-16 mt-8 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
                     {/* Hero Content */}
-                    <div className="text-center lg:text-left">
+                    <div className="flex flex-col space-y-6">
                         <motion.div
                             variants={animations.fadeInStagger}
                             initial="hidden"
-                            animate={isInView ? "visible" : "hidden"}
+                            animate="visible"
                         >
-                            <motion.div variants={animations.slideUp}>
-                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight font-heading">
-                                    Innovative <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">IT Solutions</span> for Your Business
-                                </h1>
+                            <motion.h1
+                                variants={animations.slideInLeft}
+                                initial="hidden"
+                                animate="visible"
+                                style={{
+                                    fontSize: 'calc(1.5rem + 0.9vw)',
+                                    fontWeight: 'bold',
+                                    color: 'rgb(17, 24, 39)',
+                                    lineHeight: '1.2',
+                                    fontFamily: 'var(--font-heading)'
+                                }}
+                            >
+                                Innovative IT Solutions for <span className="text-primary-600">Modern Businesses</span>
+                            </motion.h1>
+
+                            <motion.p
+                                variants={animations.slideInLeft}
+                                initial="hidden"
+                                animate="visible"
+                                style={{
+                                    fontSize: '1.25rem',
+                                    color: 'rgb(75, 85, 99)',
+                                    maxWidth: '32rem',
+                                    marginTop: '1.5rem'
+                                }}
+                            >
+                                We deliver cutting-edge technology services to help your business thrive in the digital landscape.
+                            </motion.p>
+
+                            <motion.div
+                                variants={animations.slideInLeft}
+                                initial="hidden"
+                                animate="visible"
+                                style={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    gap: '1rem',
+                                    paddingTop: '1rem',
+                                    marginTop: '1.5rem'
+                                }}
+                            >
+                                <Link href="/contact" className="btn-primary">
+                                    Get Started
+                                </Link>
+                                <Link href="/services" className="btn-outline">
+                                    Our Services
+                                </Link>
                             </motion.div>
+                        </motion.div>
+                    </div>
 
-                            <motion.div variants={animations.slideUp}>
-                                <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0">
-                                    Transforming businesses through cutting-edge technology and expert IT services. We help you navigate the digital landscape with confidence.
-                                </p>
-                            </motion.div>
-
-                            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                                <motion.div variants={animations.slideUp}>
-                                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                        <Link href="/contact" className="btn-primary text-center inline-block">
-                                            Get Started
-                                        </Link>
-                                    </motion.div>
-                                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                        <Link href="/services" className="btn-outline text-center inline-block">
-                                            Explore Services
-                                        </Link>
-                                    </motion.div>
-                                </motion.div>
-                            </div>
-
-                            <div className="mt-12">
-                                <motion.div variants={animations.slideUp}>
-                                    <div className="flex items-center justify-center lg:justify-start space-x-8">
-                                        <div className="flex flex-col items-center lg:items-start">
-                                            <motion.div
-                                                whileHover={{ y: -5 }}
-                                                transition={{ type: 'spring', stiffness: 300 }}
-                                            >
-                                                <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-primary-700">10+</span>
-                                                <span className="text-gray-600 text-sm">Years Experience</span>
-                                            </motion.div>
-                                        </div>
-                                        <div className="h-12 w-px bg-gray-300"></div>
-                                        <div className="flex flex-col items-center lg:items-start">
-                                            <motion.div
-                                                whileHover={{ y: -5 }}
-                                                transition={{ type: 'spring', stiffness: 300 }}
-                                            >
-                                                <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-primary-700">200+</span>
-                                                <span className="text-gray-600 text-sm">Projects Completed</span>
-                                            </motion.div>
-                                        </div>
-                                        <div className="h-12 w-px bg-gray-300"></div>
-                                        <div className="flex flex-col items-center lg:items-start">
-                                            <motion.div
-                                                whileHover={{ y: -5 }}
-                                                transition={{ type: 'spring', stiffness: 300 }}
-                                            >
-                                                <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-primary-700">50+</span>
-                                                <span className="text-gray-600 text-sm">Tech Experts</span>
-                                            </motion.div>
-                                        </div>
+                    {/* Hero Image/Visual */}
+                    <div className="relative">
+                        <motion.div
+                            variants={animations.slideInRight}
+                            initial="hidden"
+                            animate="visible"
+                        >
+                            <div className="bg-gradient-to-tr from-primary-600 to-secondary-500 rounded-2xl p-8 text-white shadow-xl">
+                                <h3 className="text-2xl font-bold mb-4">Enterprise-Grade Solutions</h3>
+                                <p className="mb-6">Scalable, secure, and reliable technology infrastructure for businesses of all sizes.</p>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg">
+                                        <div className="text-xl font-bold">Cloud-Native</div>
+                                        <p className="text-sm">Modern architecture</p>
                                     </div>
-                                </motion.div>
+                                    <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg">
+                                        <div className="text-xl font-bold">AI-Powered</div>
+                                        <p className="text-sm">Smart solutions</p>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
 
-                        {/* Hero Image */}
-                        <div className="relative">
-                            <motion.div
-                                initial="hidden"
-                                animate={isInView ? "visible" : "hidden"}
-                                variants={animations.scaleUp}
-                            >
-                                <div className="relative h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
-                                    {/* Replace with actual image */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white text-2xl font-bold">
-                                        <div className="text-center p-8">
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 0.5, duration: 0.8 }}
-                                            >
-                                                <div className="text-6xl mb-4">
-                                                    <motion.div
-                                                        animate={{ y: [0, -10, 0] }}
-                                                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                                                    >
-                                                        🚀
-                                                    </motion.div>
-                                                </div>
-                                                <div>IT Solutions for the Future</div>
-                                                <div className="text-sm mt-4 opacity-80">(Replace with actual hero image)</div>
-                                            </motion.div>
-                                        </div>
-                                    </div>
-                                </div>
+                        {/* Floating Elements */}
+                        <div className="absolute -top-4 -right-4 z-20">
+                            {React.createElement(motion.div, {
+                                animate: { y: [0, -10, 0] },
+                                transition: { repeat: Infinity, duration: 3 },
+                                style: {
+                                    backgroundColor: '#8b5cf6', /* Using secondary-500 color directly */
+                                    borderRadius: '9999px',
+                                    padding: '1rem',
+                                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
+                                },
+                                children: <div className="text-white font-bold">99.9% Uptime</div>
+                            })}
+                        </div>
 
-                                {/* Floating Elements - Repositioned to avoid overlap */}
-                                <div className="absolute -top-6 -left-6 bg-white p-4 rounded-lg shadow-lg z-10">
-                                    <motion.div
-                                        variants={animations.float}
-                                        initial="initial"
-                                        animate="animate"
-                                        custom={{ amplitude: 8, duration: 3, delay: 0 }}
-                                        whileHover={{ scale: 1.1, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-                                    >
-                                        <div className="flex items-center space-x-2">
-                                            <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">✓</div>
-                                            <div className="text-sm font-medium">99.9% Uptime</div>
-                                        </div>
-                                    </motion.div>
-                                </div>
-
-                                <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg z-10">
-                                    <motion.div
-                                        variants={animations.float}
-                                        initial="initial"
-                                        animate="animate"
-                                        custom={{ amplitude: 10, duration: 4, delay: 1.5 }}
-                                        whileHover={{ scale: 1.1, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-                                    >
-                                        <div className="flex items-center space-x-2">
-                                            <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">🔒</div>
-                                            <div className="text-sm font-medium">Enterprise Security</div>
-                                        </div>
-                                    </motion.div>
-                                </div>
-
-                                {/* Lightning Fast floating element - completely repositioned to right side */}
-                                <div className="absolute top-1/2 -right-6 transform -translate-y-1/2 bg-white p-4 rounded-lg shadow-lg z-10">
-                                    <motion.div
-                                        animate={{
-                                            x: [0, 10, 0],
-                                            y: [0, -5, 0]
-                                        }}
-                                        transition={{
-                                            repeat: Infinity,
-                                            duration: 4,
-                                            ease: "easeInOut"
-                                        }}
-                                        whileHover={{ scale: 1.1, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-                                    >
-                                        <div className="flex items-center space-x-2">
-                                            <div className="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">⚡</div>
-                                            <div className="text-sm font-medium">Lightning Fast</div>
-                                        </div>
-                                    </motion.div>
-                                </div>
-                            </motion.div>
+                        <div className="absolute -bottom-4 -left-4 z-20">
+                            {React.createElement(motion.div, {
+                                animate: { y: [0, 10, 0] },
+                                transition: { repeat: Infinity, duration: 4, delay: 1 },
+                                style: {
+                                    backgroundColor: '#0369a1', /* Using primary-700 color directly */
+                                    borderRadius: '9999px',
+                                    padding: '1rem',
+                                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
+                                },
+                                children: <div className="text-white font-bold">Enterprise Security</div>
+                            })}
                         </div>
                     </div>
                 </div>
+            </div>
 
-                {/* Scroll indicator */}
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-                    <motion.div
-                        variants={animations.float}
-                        initial="initial"
-                        animate="animate"
-                        custom={{ amplitude: 5, duration: 2, delay: 0 }}
-                    >
-                        <div className="flex flex-col items-center">
-                            <div className="text-sm text-gray-600 mb-2">Scroll Down</div>
-                            <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center pt-1">
-                                <div className="w-1.5 h-1.5 bg-gray-600 rounded-full">
-                                    <motion.div
-                                        animate={{ y: [0, 6, 0] }}
-                                        transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                </div>
+            {/* Background Elements */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-10 right-10 w-[50%] h-[50%] bg-primary-100 rounded-full opacity-50 blur-3xl"></div>
+                <div className="absolute bottom-10 left-10 w-[40%] h-[40%] bg-secondary-100 rounded-full opacity-50 blur-3xl"></div>
             </div>
         </section>
     );

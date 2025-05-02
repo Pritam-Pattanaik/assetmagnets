@@ -71,15 +71,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 <Providers>
                     <AdminProtected>
                         <div className={`min-h-screen bg-gray-100 ${inter.variable} ${poppins.variable}`}>
-                            <div className="flex h-screen overflow-hidden">
+                            <div className="flex h-screen overflow-hidden bg-gray-800">
                                 {/* Sidebar */}
                                 <div className="hidden md:flex md:flex-shrink-0">
                                     <motion.div
                                         initial={{ x: -100, opacity: 0 }}
                                         animate={{ x: 0, opacity: 1 }}
                                         transition={{ duration: 0.5 }}
+                                        className="h-full"
                                     >
-                                        <div className="flex flex-col w-64 bg-gray-800 text-white">
+                                        <div className="flex flex-col w-64 h-full bg-gray-800 text-white">
                                             <div className="flex items-center justify-center h-16 bg-gray-900">
                                                 <span className="text-xl font-bold">Admin Dashboard</span>
                                             </div>
@@ -322,7 +323,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                                     )}
 
                                     {/* Content area */}
-                                    <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-100 pt-6 md:pt-6 mt-0 md:mt-0">
+                                    <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-white pt-6 md:pt-6 mt-0 md:mt-0 rounded-lg shadow-sm">
                                         {children}
                                     </main>
                                 </div>

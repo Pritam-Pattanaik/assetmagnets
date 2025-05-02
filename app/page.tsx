@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { animations } from '@/utils/animations';
 import { EnhancedHeroSection } from '@/components/home/EnhancedHeroSection';
 import { EnhancedServicesHighlight } from '@/components/home/EnhancedServicesHighlight';
 import { TestimonialsCarousel } from '@/components/home/TestimonialsCarousel';
@@ -13,11 +14,12 @@ export default function Home() {
       <EnhancedHeroSection />
 
       {/* Services Highlight Section */}
+      {/* Using EnhancedServicesHighlight instead of the fixed ServicesHighlight */}
       <section className="section-padding bg-gray-50">
         <div className="container mx-auto container-padding">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-heading">Our Services</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Comprehensive IT solutions tailored to meet your business needs and drive digital transformation.</p>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Comprehensive IT solutions tailored to meet your business needs.</p>
           </div>
           <EnhancedServicesHighlight />
         </div>

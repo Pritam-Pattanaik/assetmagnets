@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import { FaUsers, FaFileAlt, FaImage, FaServer, FaChartLine } from 'react-icons/fa';
 import { useAdminProtected } from '@/utils/client-auth';
 
@@ -25,8 +25,10 @@ export default function AdminDashboard() {
     ];
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-8 p-6">
             <motion.div
+                as="div"
+                className="mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -37,35 +39,40 @@ export default function AdminDashboard() {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                    {stats.map((stat) => (
-                        <div key={stat.id} className={`${stat.color} p-6 rounded-lg shadow-sm`}>
-                            <motion.div
-                                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                            >
-                                <div className="flex items-center">
-                                    <div className="flex-shrink-0">
-                                        {stat.icon}
-                                    </div>
-                                    <div className="ml-5">
-                                        <p className="text-sm font-medium text-gray-500 truncate">{stat.title}</p>
-                                        <p className="mt-1 text-3xl font-semibold text-gray-900">{stat.value}</p>
-                                    </div>
+                {stats.map((stat) => (
+                    <motion.div
+                        as="div"
+                        key={stat.id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className={`${stat.color} p-6 rounded-lg shadow-sm`}
+                    >
+                        <motion.div
+                            as="div"
+                            className="w-full h-full"
+                            whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                        >
+                            <div className="flex items-center">
+                                <div className="flex-shrink-0">
+                                    {stat.icon}
                                 </div>
-                            </motion.div>
-                        </div>
-                    ))}
-                </motion.div>
+                                <div className="ml-5">
+                                    <p className="text-sm font-medium text-gray-500 truncate">{stat.title}</p>
+                                    <p className="mt-1 text-3xl font-semibold text-gray-900">{stat.value}</p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                ))}
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Recent Activity */}
-                <div className="bg-white overflow-hidden shadow rounded-lg">
+                <div className="bg-white overflow-hidden shadow rounded-lg min-h-[400px]">
                     <motion.div
+                        as="div"
+                        className="h-full"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
@@ -96,8 +103,10 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Quick Actions */}
-                <div className="bg-white overflow-hidden shadow rounded-lg">
+                <div className="bg-white overflow-hidden shadow rounded-lg min-h-[400px]">
                     <motion.div
+                        as="div"
+                        className="h-full"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
@@ -107,38 +116,42 @@ export default function AdminDashboard() {
                         </div>
                         <div className="px-4 py-5 sm:p-6">
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                    <motion.button
-                                        whileHover={{ scale: 1.03 }}
-                                        whileTap={{ scale: 0.97 }}
-                                    >
-                                        <FaFileAlt className="mr-2" /> New Post
-                                    </motion.button>
-                                </div>
-                                <div className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                                    <motion.button
-                                        whileHover={{ scale: 1.03 }}
-                                        whileTap={{ scale: 0.97 }}
-                                    >
-                                        <FaImage className="mr-2" /> Upload Media
-                                    </motion.button>
-                                </div>
-                                <div className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                                    <motion.button
-                                        whileHover={{ scale: 1.03 }}
-                                        whileTap={{ scale: 0.97 }}
-                                    >
-                                        <FaUsers className="mr-2" /> Manage Users
-                                    </motion.button>
-                                </div>
-                                <div className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
-                                    <motion.button
-                                        whileHover={{ scale: 1.03 }}
-                                        whileTap={{ scale: 0.97 }}
-                                    >
-                                        <FaServer className="mr-2" /> Site Settings
-                                    </motion.button>
-                                </div>
+                                <motion.button
+                                    as="button"
+                                    type="button"
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.97 }}
+                                    className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                >
+                                    <FaFileAlt className="mr-2" /> New Post
+                                </motion.button>
+                                <motion.button
+                                    as="button"
+                                    type="button"
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.97 }}
+                                    className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                >
+                                    <FaImage className="mr-2" /> Upload Media
+                                </motion.button>
+                                <motion.button
+                                    as="button"
+                                    type="button"
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.97 }}
+                                    className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                                >
+                                    <FaUsers className="mr-2" /> Manage Users
+                                </motion.button>
+                                <motion.button
+                                    as="button"
+                                    type="button"
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.97 }}
+                                    className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                                >
+                                    <FaServer className="mr-2" /> Site Settings
+                                </motion.button>
                             </div>
                         </div>
                     </motion.div>
