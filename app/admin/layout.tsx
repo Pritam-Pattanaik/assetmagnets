@@ -6,10 +6,14 @@ import { usePathname, useRouter } from 'next/navigation';
 import AdminProtected from '@/components/admin/AdminProtected';
 import { FaUsers, FaFileAlt, FaImage, FaCog, FaSignOutAlt, FaTachometerAlt, FaHome, FaInfoCircle, FaTools, FaBriefcase, FaEnvelope, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import { Inter, Poppins } from 'next/font/google';
 import { Providers } from '../providers';
 import '../globals.css';
+import React from 'react';
+
+// Define typed motion components
+const MotionDiv = motion.div as React.FC<HTMLMotionProps<"div">>;
 
 // This is a custom layout for admin pages that completely overrides the root layout
 
@@ -74,7 +78,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             <div className="flex h-screen overflow-hidden bg-gray-800">
                                 {/* Sidebar */}
                                 <div className="hidden md:flex md:flex-shrink-0">
-                                    <motion.div
+                                    <MotionDiv
                                         initial={{ x: -100, opacity: 0 }}
                                         animate={{ x: 0, opacity: 1 }}
                                         transition={{ duration: 0.5 }}
@@ -261,7 +265,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                                                 </div>
                                             </div>
                                         </div>
-                                    </motion.div>
+                                    </MotionDiv>
                                 </div>
 
                                 {/* Main content */}

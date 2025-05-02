@@ -3,6 +3,11 @@
 import { motion, HTMLMotionProps } from 'framer-motion';
 import { FaUsers, FaFileAlt, FaImage, FaServer, FaChartLine } from 'react-icons/fa';
 import { useAdminProtected } from '@/utils/client-auth';
+import React from 'react';
+
+// Define typed motion components
+const MotionDiv = motion.div as React.FC<HTMLMotionProps<"div">>;
+const MotionButton = motion.button as React.FC<HTMLMotionProps<"button">>;
 
 export default function AdminDashboard() {
     // Use the admin protection hook to ensure only admins can access this page
@@ -26,8 +31,7 @@ export default function AdminDashboard() {
 
     return (
         <div className="space-y-8 p-6">
-            <motion.div
-                as="div"
+            <MotionDiv
                 className="mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -35,21 +39,19 @@ export default function AdminDashboard() {
             >
                 <h1 className="text-2xl font-bold text-gray-900">Welcome, {session?.user?.name || 'Admin'}</h1>
                 <p className="text-gray-600">Here's what's happening with your site today.</p>
-            </motion.div>
+            </MotionDiv>
 
             {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {stats.map((stat) => (
-                    <motion.div
-                        as="div"
+                    <MotionDiv
                         key={stat.id}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className={`${stat.color} p-6 rounded-lg shadow-sm`}
                     >
-                        <motion.div
-                            as="div"
+                        <MotionDiv
                             className="w-full h-full"
                             whileHover={{ y: -5, transition: { duration: 0.2 } }}
                         >
@@ -62,16 +64,15 @@ export default function AdminDashboard() {
                                     <p className="mt-1 text-3xl font-semibold text-gray-900">{stat.value}</p>
                                 </div>
                             </div>
-                        </motion.div>
-                    </motion.div>
+                        </MotionDiv>
+                    </MotionDiv>
                 ))}
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Recent Activity */}
                 <div className="bg-white overflow-hidden shadow rounded-lg min-h-[400px]">
-                    <motion.div
-                        as="div"
+                    <MotionDiv
                         className="h-full"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -99,13 +100,12 @@ export default function AdminDashboard() {
                                 </ul>
                             </div>
                         </div>
-                    </motion.div>
+                    </MotionDiv>
                 </div>
 
                 {/* Quick Actions */}
                 <div className="bg-white overflow-hidden shadow rounded-lg min-h-[400px]">
-                    <motion.div
-                        as="div"
+                    <MotionDiv
                         className="h-full"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -116,45 +116,41 @@ export default function AdminDashboard() {
                         </div>
                         <div className="px-4 py-5 sm:p-6">
                             <div className="grid grid-cols-2 gap-4">
-                                <motion.button
-                                    as="button"
+                                <MotionButton
                                     type="button"
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.97 }}
                                     className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                 >
                                     <FaFileAlt className="mr-2" /> New Post
-                                </motion.button>
-                                <motion.button
-                                    as="button"
+                                </MotionButton>
+                                <MotionButton
                                     type="button"
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.97 }}
                                     className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                                 >
                                     <FaImage className="mr-2" /> Upload Media
-                                </motion.button>
-                                <motion.button
-                                    as="button"
+                                </MotionButton>
+                                <MotionButton
                                     type="button"
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.97 }}
                                     className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
                                 >
                                     <FaUsers className="mr-2" /> Manage Users
-                                </motion.button>
-                                <motion.button
-                                    as="button"
+                                </MotionButton>
+                                <MotionButton
                                     type="button"
-                                    whileHover={{ scale: 1.03 }}
-                                    whileTap={{ scale: 0.97 }}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
                                     className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                                 >
                                     <FaServer className="mr-2" /> Site Settings
-                                </motion.button>
+                                </MotionButton>
                             </div>
                         </div>
-                    </motion.div>
+                    </MotionDiv>
                 </div>
             </div>
         </div>
